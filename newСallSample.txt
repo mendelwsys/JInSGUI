@@ -1,0 +1,28 @@
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZC4JGUIBRIDGE->SAMPLE_WITH_3_ARGS
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] STRING_ARG_1                      TYPE        STRING
+* | [--->] INT_ARG_1                         TYPE        I
+* | [--->] STRING_ARG_2                      TYPE        STRING
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method SAMPLE_WITH_3_ARGS.
+
+      DATA:  l_param TYPE STRING.
+
+      l_param = INT_ARG_1.
+
+      CONCATENATE  'Sample_With_3_Args;105;' STRING_ARG_1 ';' l_param ';' STRING_ARG_2 INTO l_param.
+
+"     To call in a separate thread
+"     CONCATENATE  'Sample_With_3_Args;105;@@THR;' STRING_ARG_1 ';' l_param ';' STRING_ARG_2 INTO l_param.
+
+      call method  of h_control-obj  'sendCmd' EXPORTING #1 = l_param.
+
+"    in java in interface IGridStub
+"    void Sample_With_3_Args(String string_Arg_1, int int_Arg_1, String string_Arg_2);
+
+
+  endmethod.
+
+
+
