@@ -1,0 +1,103 @@
+// ATLProject1.idl : IDL source for ATLProject1
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ATLProject1.tlb) and marshalling code.
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+
+
+[
+	object,
+	uuid(5FB935F0-CE60-47EA-B74D-464E9DA2160F),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+
+interface IMyBridgeX4Java : IDispatch{
+
+	[id(11)] HRESULT sendCmd([in] BSTR p1, [out, retval] BSTR* res);
+
+	[id(12)] HRESULT stopBridge([in] int mode);//Остановить мост (mode=-1 вместе с сервером)
+	[id(13)] HRESULT startBridge([out, retval] BSTR* status);//Если необходимо запускает сервер и инициализирует мост
+
+	[id(14)] HRESULT getResult([out, retval] BSTR* res);
+
+	[id(15)] HRESULT setDefJOption([in] BSTR joption, [out, retval] int* res);//Установить опции Java при запуске сервера ( Запускается без опции)
+	[id(16)] HRESULT setJarServerUrl([in] BSTR urlServer, [out, retval] int* res);//Установить путь к jar где выполняетсся сервер.
+	[id(17)] HRESULT setJavaCmd([in] BSTR urlJava, [out, retval] int* res);//Установить путь к java.
+	
+	[id(18)] HRESULT setAppName([in] BSTR appName, [out, retval] int* res);//Установить имя процесса при запуске
+	[id(19)] HRESULT getAppName([out] BSTR* msg, [out, retval] BSTR* appName);//Отдать имя процесса при запуске
+	
+	[id(25)] HRESULT getFullCmd([out] BSTR* msg,[out, retval] BSTR* cmd);//Получить команду которая будет исполнена с пояснениями.
+
+	[id(31)] HRESULT getServerStatus([out, retval] BSTR* status);//Получить статус сервера
+
+	//[id(34)] HRESULT stopBridgeEx([in] BSTR SysName, [in] int mode);//Остановить мост (mode=-1 вместе с сервером)(Разные мосты для различных систем)
+	[id(35)] HRESULT startBridgeEx([in] BSTR SysName, [out, retval] BSTR* status);//Если необходимо запускает сервер и инициализирует мост (Разные мосты для различных систем)
+
+	[id(36)] HRESULT aboutLib([out, retval] BSTR* status);//Получить сведения о библиотеке
+};
+
+
+[
+	uuid(35F0D7BA-43DB-480C-991A-74DB6CD9385E),
+	version(1.0),
+]
+library ATLProject1Lib
+{
+
+	importlib("stdole2.tlb");
+
+//	[
+//		//	object,
+//		uuid(5FB935F0-CE60-47EA-B74D-464E9DA2160F),
+//		//	dual,
+//		nonextensible,
+//		//	pointer_default(unique)
+//	]
+//	dispinterface IMyBridgeX4Java{
+//
+//properties:
+//methods:
+//		[id(15)] void stopBridge();
+//		[id(17)] void startBridge();
+//	};
+
+	[
+		uuid(0FCAED01-14CA-4ADD-972B-5A03AACCD9DC)
+		//uuid(8c1fb53f-35bf-42ee-bc35-771457d4ae87)
+	]
+
+	dispinterface _IMyBridgeX4JavaEvents
+	{
+		properties:
+		methods:
+			[id(1)] void RiseEvent();
+			[id(2)] void RiseEvent2();
+			[id(3)] void MyEv();
+			[id(4)] void MyEv4();
+	};
+
+	[
+	//	uuid(38D62FD4-2573-4275-B13C-80F2AFC57ADA),
+		uuid(2CA94F06-3869-4BCF-B634-B05F2814253C),
+		control
+	]
+	coclass MyBridgeX4Java
+	{
+		//[default] dispinterface IMyBridgeX4Java;
+		[default] interface IMyBridgeX4Java;
+		[default, source] dispinterface _IMyBridgeX4JavaEvents;
+	};
+
+};
+
+
+

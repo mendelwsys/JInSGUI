@@ -1,0 +1,32 @@
+HKCR
+{
+	ActiveXBridge.MWlib.1.1 = s 'MyBridgeX4Java Class'
+	{
+		CLSID = s '{2CA94F06-3869-4BCF-B634-B05F2814253C}'
+	}
+	ActiveXBridge.MWlib.1 = s 'MyBridgeX4Java Class'
+	{		
+		CurVer = s 'ActiveXBridge.MWlib.1.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {2CA94F06-3869-4BCF-B634-B05F2814253C} = s 'MyBridgeX4Java Class'
+		{
+			ProgID = s 'ActiveXBridge.MWlib.1.1'
+			VersionIndependentProgID = s 'ActiveXBridge.MWlib.1'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove Control
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 106'
+			MiscStatus = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			TypeLib = s '{35F0D7BA-43DB-480C-991A-74DB6CD9385E}'
+			Version = s '1.0'
+		}
+	}
+}
